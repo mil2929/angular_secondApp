@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+.table tr th, .table tr td{
+    white-space: nowrap;
+    text-align: center
+}
+
+.box-body{
+    overflow-x:auto;
+    margin-left:20px;
+    margin-right: 20px;
+    margin-bottom: 30px
+}
+
+#deleteIcon{
+    color: red;
+}
+
+#editIcon{
+    color: green;
+}

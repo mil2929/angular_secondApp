@@ -1,0 +1,119 @@
+<section class="content-header">
+        <h1>Product List</h1>
+</section>
+<!-- Main content -->
+<section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Table of product list</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <div class="row" style="margin-bottom: 20px">
+                      <div class="col-md-1">
+                          <label>Criteria :</label>
+                      </div>
+                      <div class="col-md-3">
+                        <select class="form-control" [(ngModel)]="criteria">
+                          <option *ngFor="let c of columns" [value]="c.field">{{c.text}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <input type="text" class="form-control" [(ngModel)]="searchVal">
+                      </div>
+                      <div class="col-md-1">
+                          <button type="button" (click)="search()" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span> Search</button>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="row" style="text-align: right">
+                            <button type="button" (click)="add()" class="btn btn-primary">
+                              <i class="fa fa-plus"></i> Add Product</button>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <ul style="margin-top: 10px">
+                        <li *ngFor="let ctr of option.criteria">
+                          Results of
+                          <span style="color:cornflowerblue"> {{ctr.criteria}} </span> that contain
+                          <b>"{{ctr.value}}" </b>
+                          <span style="color:coral; cursor: pointer" (click)="remove(ctr)">remove</span>
+                        </li>
+                      </ul>
+                    </div>
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Supplier ID</th>
+                    <th>Category ID</th>
+                    <th>QuantityPerUnit</th>
+                    <th>UnitPrice</th>
+                    <th>UnitsInStock</th>
+                    <th>UnitsOnOrder</th>
+                    <th>ReorderLevel</th>
+                    <th>Discontinued</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of data">
+                        <td>
+                            <a (click)="view(x)" style="margin-right: 5px">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </a>
+                            <a (click)="edit(x)" style="margin-right: 5px">
+                                <i class="glyphicon glyphicon-pencil" id="editIcon"></i>
+                            </a>
+                            <a (click)="delete(x)" style="margin-right: 5px">
+                                <i class="glyphicon glyphicon-remove" id="deleteIcon"></i>
+                            </a>
+                        </td>
+                        <td *ngFor="let i of columns">{{x[i.field]}}
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="box-body">
+                  <div class="col-sm-5">
+                      <div>
+                          <h4><span class="label label-default">Total Rows(s) : {{rowCount}}</span></h4>
+                      </div>
+                    </div>
+                  <div class="col-sm-7" style="text-align: right;">
+                    <span>Show : </span>
+                    <select class="page-control" [(ngModel)]="option.pageSize" (change)="displayData()">
+                      <option *ngFor="let opt of [5,10,15,20]">{{opt}}
+                      </option>
+                    </select>
+                    <span> Page : </span>
+                    <input type="text" [(ngModel)]="option.page"  style="width: 40px;  text-align: center" (keyup)="displayData()" class="page-control">
+                    <button type="button" [disabled]="option.page==1" (click)="prev()" style="margin-left: 10px" class="btn btn-default btn-sm">
+                      <span class="glyphicon glyphicon-chevron-left"></span> Prev
+                    </button>
+                    <button type="button" [disabled]="option.page==pageCount" (click)="next()" style="margin-left: 10px; margin-right: 10px" class="btn btn-default btn-sm">
+                      <span class="glyphicon glyphicon-chevron-right"></span> Next
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12"></div>
+                </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+    
+          
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+      <product-modal [product]="product" [state]="state" [displayData]="refresh"></product-modal>
+      <!-- /.content -->
