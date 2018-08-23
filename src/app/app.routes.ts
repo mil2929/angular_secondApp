@@ -2,22 +2,26 @@ import { Route } from "@angular/router";
 import { CustomerComponent } from "./pages/customer.component";
 import { ProductComponent } from "./pages/product.component";
 import { CategoryComponent } from "./pages/category.component";
+import { LoginComponent } from "./login/login.component";
 
 export  const routes:Route[]=[
     {
-        path: 'customers',
-        component: CustomerComponent
+        path: 'login',
+        component: LoginComponent
     },
     {
-        path: '',
-        component: CustomerComponent
+        path: 'pages',
+        loadChildren: 'src/app/pages/page.module#PagesModule'
     },
     {
-        path: 'products',
-        component: ProductComponent
+        path:'',
+        redirectTo: '/login',
+        pathMatch: 'full'
     },
     {
-        path: 'categories',
-        component: CategoryComponent
+        path: '**',                 //for the unavailable route
+        redirectTo: '/login',
+        pathMatch: 'full'
     }
+
 ]

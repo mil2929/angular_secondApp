@@ -51,9 +51,13 @@
                   <thead>
                   <tr>
                     <th>Action</th>
-                    <th>Category ID</th>
-                    <th>Category Name</th>
-                    <th>Description</th>
+                    <th *ngFor="let c of columns" (click)="sort(c.field)">{{c.text}}
+                        <i class="glyphicon glyphicon-sort sort-icon" 
+                        [class.glyphicon-sort-by-attributes]='c.field == option.order.column && option.order.direction =="ASC"'
+                        [class.glyphicon-sort-by-attributes-alt]='c.field == option.order.column && option.order.direction =="DSC"'
+                        [class.glyphicon-sort]='c.field!=option.order.column'
+                        [style.opacity]='c.field==option.order.column ? 0.8 : 0.4'></i>
+                    </th>
                   </tr>
                   </thead>
                   <tbody>

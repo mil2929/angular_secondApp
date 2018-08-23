@@ -12,16 +12,18 @@ import { CategoryComponent } from './pages/category.component';
 import { CustomerModal } from './pages/customer.modal';
 import { CategoryModal } from './pages/category.modal';
 import { ProductModal } from './pages/product.modal';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent,
-    ProductComponent,
-    CategoryComponent,
-    CustomerModal,
-    CategoryModal,
-    ProductModal
+    //CustomerComponent,
+    //ProductComponent,
+    //CategoryComponent,
+    //CustomerModal,
+    //CategoryModal,
+    //ProductModal,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

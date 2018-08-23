@@ -117,7 +117,8 @@ export class CustomerComponent  {
     }
 
     delete(x:CustomerTblHeading){
-        this.service.delete("/customers/"+ x.CustomerID)
+        if(window.confirm("Are you sure to delete this item?")){
+            this.service.delete("/customers/"+ x.CustomerID)
         .subscribe(
             res=>{
                 if(res['meta'].success){
@@ -134,6 +135,7 @@ export class CustomerComponent  {
                 
             }
         )
+        }
     }
 
 

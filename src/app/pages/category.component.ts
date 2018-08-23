@@ -38,6 +38,39 @@ export class CategoryComponent  {
         return JSON.parse(str);
     }
 
+    direction = false;
+
+    sort(col){
+        let order = {
+            column : col,
+            direction : this.direction ? "ASC" : "DSC"
+        };
+        this.option.order=order;
+        this.direction = !this.direction;
+        this.displayData();
+    }
+
+    delete(x:CategoryTblHeading){
+        if(window.confirm("Are you sure to delete this item?")){
+            this.service.delete("/categories/"+x.CategoryID)
+            .subscribe(
+                res=> {
+                    if (res['meta'].success){
+                        alert('deleted!');
+                        this.displayData();
+                    }else{
+                        alert("Sorry, the data cannot be deleted!");
+                        console.log(res);
+                    }
+                },
+                err=>{
+                    alert("Sorry, the data cannot be deleted!");
+                        console.log(err);
+                }
+            )
+        }
+    }
+
     add(){
         this.state="new";
         $("#category-modal").modal();

@@ -61,8 +61,20 @@ export class ProductComponent  {
         $("#product-modal").modal();
     }
 
+    direction = false;
+    sort(col){
+        let order = {
+            column : col,
+            direction : this.direction ? "ASC" : "DSC"
+        };
+        this.option.order = order;
+        this.direction = !this.direction;
+        this.displayData();
+    }
+
     delete(x:ProductTblHeading){
-        this.service.delete("/products/"+ x.ProductID)
+        if(window.confirm("Are you sure to delete this item?")){
+            this.service.delete("/products/"+ x.ProductID)
         .subscribe(
             res=>{
                 if(res['meta'].success){
@@ -79,6 +91,7 @@ export class ProductComponent  {
                 
             }
         )
+        }
     }
 
     add(){

@@ -48,16 +48,13 @@
                   <thead>
                   <tr>
                     <th>Action</th>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Supplier ID</th>
-                    <th>Category ID</th>
-                    <th>QuantityPerUnit</th>
-                    <th>UnitPrice</th>
-                    <th>UnitsInStock</th>
-                    <th>UnitsOnOrder</th>
-                    <th>ReorderLevel</th>
-                    <th>Discontinued</th>
+                    <th *ngFor="let col of columns" (click)="sort(col.field)">{{col.text}}
+                        <i class="glyphicon glyphicon-sort sort-icon" 
+                        [class.glyphicon-sort-by-attributes]='col.field == option.order.column && option.order.direction =="ASC"'
+                        [class.glyphicon-sort-by-attributes-alt]='col.field == option.order.column && option.order.direction =="DSC"'
+                        [class.glyphicon-sort]='col.field!=option.order.column'
+                        [style.opacity]='col.field==option.order.column ? 0.8 : 0.4'></i>
+                    </th>
                   </tr>
                   </thead>
                   <tbody>

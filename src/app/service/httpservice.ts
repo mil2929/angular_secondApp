@@ -30,10 +30,10 @@ export class HttpService{
     }
 
     private getOption(){
-        //let token = localStorage.getItem("auth-token")||"";
+        let token = localStorage.getItem("auth-token")||"";
         let headers = new HttpHeaders({
             "Content-type" : "application/json",
-           // "Authorization":"Bearer "+token //enter the token here
+            "Authorization":"Bearer "+ token //enter the token here
         });
         return {
             headers : headers
